@@ -15,11 +15,51 @@ NOTES:
 
 #include <stdio.h>
 
-struct student {
+struct student 
+{
 	char name[10];
 	int score;
 };
 
-void * scoresDescendingSort(struct student *students, int len) {
-	return NULL;
+void quicksort(struct student *x, int first, int last)
+{
+	int pivot, j, temp, i;
+
+	if (first < last)
+	{
+		pivot = first;
+		i = first;
+		j = last;
+
+		while (i < j)
+		{
+			while (x[i].score >= x[pivot].score && i < last)
+				i++;
+			while (x[j].score < x[pivot].score)
+				j--;
+			if (i < j)
+			{
+				temp = x[i].score;
+				x[i].score = x[j].score;
+				x[j].score = temp;
+			}
+		}
+
+		temp = x[pivot].score;
+		x[pivot].score = x[j].score;
+		x[j].score = temp;
+		quicksort(x, first, j - 1);
+		quicksort(x, j + 1, last);
+
+	}
+}
+
+void * scoresDescendingSort(struct student *students, int len)
+{
+	if (students == NULL || len < 0)
+		return NULL;
+	if (len == 1)
+		return students;
+	quicksort(students, 0, len - 1);
+
 }
