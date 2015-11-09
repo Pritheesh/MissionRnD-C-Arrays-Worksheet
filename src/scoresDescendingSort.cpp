@@ -23,7 +23,8 @@ struct student
 
 void quicksort(struct student *x, int first, int last)
 {
-	int pivot, j, temp, i;
+	int pivot, j, i;
+	struct student temp;
 
 	if (first < last)
 	{
@@ -39,15 +40,15 @@ void quicksort(struct student *x, int first, int last)
 				j--;
 			if (i < j)
 			{
-				temp = x[i].score;
-				x[i].score = x[j].score;
-				x[j].score = temp;
+				temp = x[i];
+				x[i] = x[j];
+				x[j] = temp;
 			}
 		}
 
-		temp = x[pivot].score;
-		x[pivot].score = x[j].score;
-		x[j].score = temp;
+		temp = x[pivot];
+		x[pivot] = x[j];
+		x[j] = temp;
 		quicksort(x, first, j - 1);
 		quicksort(x, j + 1, last);
 

@@ -38,9 +38,7 @@ void * studentsCount(int *Arr, int len, int score, int *lessCount, int *moreCoun
 			i++;
 		}
 		while (Arr[i] == score && i < len)
-		{
 			i++;
-		}
 		while (Arr[i] > score && i < len)
 		{
 			(*moreCount) ++;
